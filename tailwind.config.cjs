@@ -3,8 +3,8 @@ module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}", "./index.html"],
   safelist: [""],
   theme: {
-    colors: {},
     extend: {
+      colors: {},
       dropShadow: {
         glow: "0 0 50px 15px #fff",
       },
