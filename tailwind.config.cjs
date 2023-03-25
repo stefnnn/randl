@@ -4,7 +4,9 @@ module.exports = {
   safelist: [""],
   theme: {
     extend: {
-      colors: {},
+      colors: {
+        primary: "#824DF4",
+      },
       dropShadow: {
         glow: "0 0 50px 15px #fff",
       },
