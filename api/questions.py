@@ -36,7 +36,6 @@ def generate_questions(url):
     prompt = PROMPT + text
     gpt_messages = [gen_message(prompt)]
     questions = gpt_complete(gpt_messages)
-    print(questions)
     article['questions'] = json.loads(questions)
     db.update_article(article)
 

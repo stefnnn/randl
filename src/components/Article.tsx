@@ -4,6 +4,7 @@ import { articleAtom, languageAtom, topicAtom } from "src/lib/atoms";
 import { Spinner } from "./Spinner";
 import { Article } from "./PickArticle";
 import { QuestionsBox } from "./Questions";
+import { Sentences } from "./Sentences";
 
 export const ArticlePage: React.FC<{ article: Article }> = ({ article }) => {
   const topic = useAtomValue(topicAtom);
@@ -21,8 +22,9 @@ export const ArticlePage: React.FC<{ article: Article }> = ({ article }) => {
       <WarnBox condition={!article.sentences_translated} text="This article has not yet been translated." />
       <WarnBox condition={!article.questions} text="Questions have not yet been generated." />
 
-      <h2 className="mt-4">{article.title}</h2>
-      <p className="whitespace-pre-wrap">{article.text}</p>
+      <h2 className="mt-8 mb-4">{article.title}</h2>
+      {article.sentences ? <Sentences article={article} /> : <p className="whitespace-pre-wrap">{article.text}</p>}
+
       <p className="mt-4 text-sm text-neutral-400 text-right">
         Source:{" "}
         <a href={article.url} className="underline" target="_blank">

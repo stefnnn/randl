@@ -1,5 +1,5 @@
 import React from "preact/compat";
-import { Article, Question } from "./PickArticle";
+import { Question } from "./PickArticle";
 
 export const QuestionsBox: React.FC<{ questions: Question[] }> = ({ questions }) => {
   return (
