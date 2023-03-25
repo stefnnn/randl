@@ -15,9 +15,15 @@ export type Article = {
   source: string;
   url: string;
   audio: string;
+  questions: Question[];
 };
 
 export type Sentence = string;
+
+export type Question = {
+  question: string;
+  answer: string;
+};
 
 export const PickArticle: React.FC<{ topic: Topic; language: Language }> = ({ topic, language }) => {
   const path = `articles?language=${language.code}&topic=${encodeURI(topic.toLowerCase())}`;

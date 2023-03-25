@@ -1,15 +1,13 @@
 #!/usr/bin/env python3
 
 import sys, os
-from tinydb import TinyDB, where
 import boto3
 import re
 from dotenv import load_dotenv
 import openai
+from database import db
 
 load_dotenv()
-
-articles_db = TinyDB('./data/articles.json')
 
 # Configure AWS
 translator = boto3.client('translate')
@@ -28,11 +26,8 @@ def translate(text, source, target=TARGET_LANG):
   response = translator.translate_text(Text=text, SourceLanguageCode=source, TargetLanguageCode=target)
   return response['TranslatedText']
 
-def find_article(url):
-  return articles_db.search(where('url') == url)[0]
-
 def translate_article(url):
-  article = find_article(url)
+  article = db.find_article(url)
   if 'sentences_translated' in article:
     print("Already translated. Skipping…")
   else:
@@ -45,48 +40,9 @@ def translate_article(url):
     article['sentences'] = re.split(r'\.(?=\s)', article['text'])
     article['sentences_translated'] = re.split(r'\.(?=\s)', text_tranlated)
 
-    articles_db.update(article, doc_ids=[article.doc_id])
+    db.update_article(article)
     print(f"Translated {len(raw)} characters and saved article")
-
-def generate_audio(url):
-  article = find_article(url)
-  sentences = article['sentences']
-  dir = os.path.join(AUDIO_DIR, str(article.doc_id))
-  
-  if sentences is None or len(sentences) == 0:
-    print("Article is not yet translated. Skipping audio generation…")
-  elif os.path.exists(dir):
-    print("Already generated audio for this article. Skipping…")
-  else:
-    os.makedirs(dir, exist_ok=True)
-    language = TARGET_SPEACH_LANG[article['language']]
-    voice = POLLY_VOICES[article['language']]
-    print(f"Generating audio in {language} with neural voice actor {voice}")
-  
-    for ix, sentence in enumerate(sentences):
-      try:
-        response = polly.synthesize_speech(
-          Text=sentence, Engine='neural', LanguageCode=language, OutputFormat="mp3", VoiceId=voice
-        )
-        path = os.path.join(dir, str(ix)+".mp3")
-        file = open(path, 'wb')
-        file.write(response['AudioStream'].read())
-        file.close()
-      except Exception as e:
-        print("Error generating audio")
-        print(e)
-        sys.exit()
-
-    article['audio'] = dir.replace("data", "")
-    articles_db.update(article, doc_ids=[article.doc_id])
-    print(f"Wrote {len(sentences)} MP3 files to disk into {dir}")
-
-def generate_questions(url):
-  article = find_article(url)
-
-  
 
 if __name__ == "__main__":
   url = sys.argv[1]
   translate_article(url)
-  generate_audio(url)

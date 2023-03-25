@@ -19,5 +19,11 @@ class DB:
   def get_articles(self, language, topic):
     articles = articles_db.search((Article.language == language) & (Article.topics.any(topic)) )
     return articles
-
+  
+  def find_article(self, url):
+    return articles_db.search(Article.url == url)[0]
+  
+  def update_article(self, article):
+    articles_db.update(article, doc_ids=[article.doc_id])
+    
 db = DB()
