@@ -4,9 +4,9 @@ articles_db = TinyDB('./data/articles.json')
 Article = Query()
 
 languages = [{'code': 'de', 'name': 'German', 'flag': '🇩🇪'}, {'code': 'fr', 'name': 'French', 'flag': '🇫🇷'}, {'code': 'es', 'name': 'Spanish', 'flag': '🇪🇸'}, {'code': 'uk', 'name': 'Ukranian', 'flag': '🇪🇺'}]
-topics = ["Sports", "Music", "Economy", "Science", "Metaverse", "Veganism", "Cryptocurrency", "Mental Health", "Self-Care", "Gaming", "Artificial Intelligence",
-  "Fashion", "Travel", "Cybersecurity", "Sustainability", "Mindfulness", "Diversity", "LGBTQ", "Renewable Energy",
-  "Space Exploration", "Ed Sheeran", "Billie Eilish", "Cardi B", "Drake", "Football", "Justin Bieber", "Tennis" 
+topics = ["sports", "music", "economy", "science", "metaverse", "veganism", "cryptocurrency", "gaming", "artificial intelligence",
+  "fashion","sustainability", "diversity", "renewables",
+  "space exploration", "ed sheeran", "billie eilish", "drake", "football",
 ]
 
 class DB:

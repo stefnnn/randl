@@ -23,7 +23,11 @@ def topics():
 def articles():
     language = request.args.get('language')
     topic = request.args.get('topic')
-    return {"articles": db.get_articles(language=language, topic=topic)}
+    articles = db.get_articles(language=language, topic=topic)
+    #summary_fields = set(['doc_id', 'title', 'image', 'source', 'url'])
+    #for article in articles:
+    #    article = {k:v for k,v in article.items() if k in summary_fields}
+    return {"articles": articles}
 
 @app.get('/audio/<int:doc_id>/<int:sentence>')
 def audio(doc_id, sentence):

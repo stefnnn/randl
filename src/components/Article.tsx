@@ -10,7 +10,6 @@ export const ArticlePage: React.FC<{ article: Article }> = ({ article }) => {
   const topic = useAtomValue(topicAtom);
   const language = useAtomValue(languageAtom);
   const setArticle = useSetAtom(articleAtom);
-  console.log(article);
 
   return article ? (
     <div className="">

@@ -44,7 +44,7 @@ def generate_audio(url):
         print(e)
         sys.exit()
 
-    article['audio'] = dir.replace("data", "")
+    article['audio'] = dir.replace("data", "") + "/"
     db.update_article(article)
     print(f"Wrote {len(sentences)} MP3 files to disk into {dir}")
 

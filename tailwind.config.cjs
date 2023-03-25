@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}", "./index.html"],
-  safelist: [""],
+  safelist: ["bg-purple-600", "hover:bg-purple-600"],
   theme: {
     extend: {
       colors: {
@@ -10,10 +10,13 @@ module.exports = {
       dropShadow: {
         glow: "0 0 50px 15px #fff",
       },
+      fontFamily: {
+        lily: ["'Lily Script One'", "system"],
+      },
       animation: {
         dashing: "dashing 0.5s linear infinite",
         linedraw: "linedraw 1s linear forwards",
-        grow: "grow 2s ease-in-out infinite",
+        grow: "grow 0.2s ease-in-out forwards",
         wiggle: "wiggle 0.2s ease-in-out 1",
       },
       keyframes: {
@@ -25,8 +28,8 @@ module.exports = {
           to: { strokeDashoffset: 0 },
         },
         grow: {
-          "0%": { r: 30, transformOrigin: "center", opacity: 1 },
-          "100%": { r: 100, transformOrigin: "center", opacity: 0 },
+          "0%": { transform: "scale(100%)", transformOrigin: "center", opacity: 1 },
+          "100%": { transform: "scale(105%)", transformOrigin: "center", opacity: 1 },
         },
         wiggle: {
           "0%, 100%": { transform: "rotate(-3deg)" },

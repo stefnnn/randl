@@ -19,6 +19,7 @@ export const PickLanguage: React.FC = () => {
 
   const onClick = (lang: Language) => {
     setLanguage(() => lang);
+    setTimeout(() => window.scrollBy({ top: 200, behavior: "smooth" }), 100);
   };
 
   if (error) console.error(error);
@@ -30,7 +31,7 @@ export const PickLanguage: React.FC = () => {
       {languages?.map((lang) => (
         <div
           className={`${pillClasses} ${
-            language == lang ? "bg-purple-600 hover:bg-purple-600 text-white border-transparent" : ""
+            language == lang ? "!bg-purple-600 hover:bg-purple-600 border-transparent text-white" : ""
           }`}
           onClick={() => onClick(lang)}
         >

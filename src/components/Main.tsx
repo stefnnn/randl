@@ -16,11 +16,25 @@ export const Main: React.FC = () => {
       {article ? (
         <ArticlePage article={article} />
       ) : (
-        <>
+        <div className="my-4">
+          <h2 className="prompt animate-character">1) Pick a Language</h2>
           <PickLanguage />
-          {language && <PickTopic />}
-          {language && topic && <PickArticle language={language} topic={topic} />}
-        </>
+
+          {language && (
+            <>
+              <h2 className="mt-16 prompt animate-character">2) Pick a Topic</h2>
+              <PickTopic />
+            </>
+          )}
+          {language && topic ? (
+            <>
+              <h2 className="mt-16 prompt animate-character">3) Pick an Article</h2>
+              <PickArticle language={language} topic={topic} />
+            </>
+          ) : (
+            <div className="h-48" />
+          )}
+        </div>
       )}
     </div>
   );

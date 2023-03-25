@@ -7,15 +7,16 @@ import { useAtom } from "jotai";
 import { articleAtom } from "src/lib/atoms";
 
 export type Article = {
+  doc_id: string;
   title: string;
-  text: string;
   image: string;
-  sentences: Sentence[];
-  sentences_translated: Sentence[];
   source: string;
   url: string;
-  audio: string;
-  questions: Question[];
+  text?: string;
+  sentences?: Sentence[];
+  sentences_translated?: Sentence[];
+  audio?: string;
+  questions?: Question[];
 };
 
 export type Sentence = string;
@@ -41,12 +42,16 @@ export const PickArticle: React.FC<{ topic: Topic; language: Language }> = ({ to
   return isLoading ? (
     <Spinner />
   ) : (
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-8">
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 gap-y-8 mt-8">
       {articles?.map((art) => (
-        <div className="bg-slate-200 shadow rounded cursor-pointer hover:shadow-xl" onClick={() => onClick(art)}>
+        <div
+          className="bg-slate-200 shadow-lg rounded cursor-pointer hover:animate-grow hover:shadow-xl h-full flex flex-col"
+          onClick={() => onClick(art)}
+        >
           <img src={art.image} className="object-cover rounded-t" />
-          <div className="p-2">
-            <h3 className="text-sm font-bold">{art.title}</h3>
+          <div className="p-2 flex-grow h-auto flex flex-col justify-between">
+            <h3 className="text-xs font-bold">{art.title}</h3>
+            <p className="text-xs text-neutral-400 text-right mt-2">{art.source}</p>
           </div>
         </div>
       ))}
