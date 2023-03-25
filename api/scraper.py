@@ -5,7 +5,7 @@ from tinydb import TinyDB, where
 from newspaper import Article
 import feedparser
 
-articles_db = TinyDB('../data/articles.json')
+articles_db = TinyDB('./data/articles.json')
 
 def extract_articles(url, language, topic):
   print(f"Parse RSS Feed {url} ({language} / {topic})")

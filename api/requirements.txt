@@ -5,3 +5,5 @@ feedparser==6.0.10
 tinydb
 newspaper3k
 boto3
+dotenv
+

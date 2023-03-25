@@ -32,6 +32,9 @@ body {
   .btn {
     @apply pill rounded bg-primary text-white;
   }
+  .box {
+    @apply rounded shadow p-4 py-2 text-sm;
+  }
 }
 
 @layer utilities {

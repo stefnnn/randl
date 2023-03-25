@@ -11,13 +11,13 @@ export type Article = {
   text: string;
   image: string;
   sentences: Sentence[];
-};
-
-export type Sentence = {
-  text: string;
-  translation: string;
+  sentences_translated: Sentence[];
+  source: string;
+  url: string;
   audio: string;
 };
+
+export type Sentence = string;
 
 export const PickArticle: React.FC<{ topic: Topic; language: Language }> = ({ topic, language }) => {
   const path = `articles?language=${language.code}&topic=${encodeURI(topic.toLowerCase())}`;
