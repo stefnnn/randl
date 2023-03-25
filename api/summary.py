@@ -4,13 +4,12 @@ import sys, os
 from dotenv import load_dotenv
 import openai
 from database import db
-import json
 
 load_dotenv()
 
 SUMMARY_PROMPTS = {
-  "de": "Kannst Du bitte eine kurze und sehr einfach verständliche Zusammenfassung für folgenden Text schreiben. Verwende etwa sehr 10 einfache Sätze.\n\nText:\n", 
-  "fr": "Peux-tu s'il te plaît écrire un résumé court et très facile à comprendre pour le texte suivant. Utilise environ 10 phrases très simples.\n\nTexte:\n", 
+  "de": "Kannst Du bitte eine kurze und sehr einfach verständliche Zusammenfassung für folgenden Text schreiben. Verwende etwa sehr 10 einfache Sätze mit einfachen Wörtern.\n\nText:\n", 
+  "fr": "Peux-tu s'il te plaît écrire un résumé court et très facile à comprendre pour le texte suivant. Utilise environ 10 phrases très simples avec des mots simple.\n\nTexte:\n", 
   "en": "Can you please write a short and very easy to understand summary for the following text. Use about 10 very simple sentences.\n\nText:\n", 
   "it": "Potete scrivere un riassunto breve e molto semplice del seguente testo. Usa circa 10 frasi molto semplici.\nTesto:\n", 
   "uk": "Напишіть, будь ласка, короткий і дуже простий підсумок до наступного тексту. Використовуйте приблизно 10 дуже простих речень.\n\nТекст:\n", 

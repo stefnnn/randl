@@ -42,6 +42,13 @@ def extract_article(url, language, topic, source):
   except Exception as e:
     print(f"Could not parse {url}: " + e)
 
+def extract(url, language, topic, num = 10):
+  if "rss" in url:
+    extract_articles(url, language, topic)
+  else:
+    source = urlparse(url).hostname
+    extract_article(url, language, topic, source=source)
+
 if __name__ == "__main__":  
   language = sys.argv[1]
   if language == "init":
@@ -51,8 +58,5 @@ if __name__ == "__main__":
     topic = sys.argv[2]
     url = sys.argv[3]
     num = int(sys.argv[4]) if len(sys.argv) > 4 else 10
-    if "rss" in url:
-      extract_articles(url, language, topic)
-    else:
-      source = urlparse(url).hostname
-      extract_article(url, language, topic, source=source)
+    extract(url, language, topic, num)
+    

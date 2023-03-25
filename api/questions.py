@@ -32,12 +32,15 @@ def generate_questions(url):
   if 'questions' in article:
     print("Article already has questions. Skipping…")
   else:
-    text = article['text']
-    prompt = PROMPT + text
-    gpt_messages = [gen_message(prompt)]
-    questions = gpt_complete(gpt_messages)
-    article['questions'] = json.loads(questions)
-    db.update_article(article)
+    try:
+      text = article['text']
+      prompt = PROMPT + text
+      gpt_messages = [gen_message(prompt)]
+      questions = gpt_complete(gpt_messages)
+      article['questions'] = json.loads(questions)
+      db.update_article(article)
+    except Exception as e:
+      print("Failed to generate questions: " + e)
 
 def gpt_complete(messages):
   api_response = openai.ChatCompletion.create(
