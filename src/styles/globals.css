@@ -23,7 +23,7 @@ body {
     @apply px-3 py-1 text-xs text-white rounded-full bg-neutral-600 whitespace-nowrap;
   }
   .btn {
-    @apply pill rounded bg-[#a3a9b7] text-white hover:bg-[#19274b];
+    @apply pill rounded bg-primary text-white;
   }
 }
 
