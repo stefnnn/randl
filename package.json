@@ -9,7 +9,8 @@
     "preview": "vite preview --port 80 --host true &",
     "server": "python -m flask --app api/server.py run --debug",
     "production": "yarn install && yarn preview && yarn server",
-    "generate": "api/generate.py"
+    "generate": "api/generate.py",
+    "scrape": "api/scrape.py"
   },
   "dependencies": {
     "jotai": "^2.0.3",

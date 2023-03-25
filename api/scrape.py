@@ -4,6 +4,8 @@ import sys
 from tinydb import TinyDB, where
 from newspaper import Article
 import feedparser
+from urllib.parse import urlparse
+from generate import generate_metadata
 
 articles_db = TinyDB('./data/articles.json')
 
@@ -25,21 +27,20 @@ def extract_article(url, language, topic, source):
     article = Article(url)
     article.download()
     article.parse()
-    article.nlp()
     print(f"- {article.title}")
     articles_db.insert({
       'language': language,
-      'topics': [topic, *article.keywords],
+      'topics': [topic],
       'title': article.title,
       'text': article.text,
       'image': article.top_image,
-      'summary': article.summary,
       'url': article.url,
       'source': source
     })
     num -= 1
-  except:
-    print(f"Could not parse {url}")
+    generate_metadata(article.url)
+  except Exception as e:
+    print(f"Could not parse {url}: " + e)
 
 if __name__ == "__main__":  
   language = sys.argv[1]
@@ -49,5 +50,9 @@ if __name__ == "__main__":
   else:
     topic = sys.argv[2]
     url = sys.argv[3]
-    num = sys.argv[4] if len(sys.argv) > 4 else 10
-    extract_articles(url, language, topic)
+    num = int(sys.argv[4]) if len(sys.argv) > 4 else 10
+    if "rss" in url:
+      extract_articles(url, language, topic)
+    else:
+      source = urlparse(url).hostname
+      extract_article(url, language, topic, source=source)

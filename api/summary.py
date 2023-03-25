@@ -29,9 +29,9 @@ def generate_summary(url):
   else:
     prompt = SUMMARY_PROMPTS[article['language']] + article['text']
     gpt_messages = [gen_message(prompt)]
-    article['gpt_summary'] = gpt_complete(gpt_messages)
-    print("Text: "+ article['text']+"\n"+"-"*80)
-    print("Summary: " + article['gpt_summary'])
+    article['summary'] = gpt_complete(gpt_messages)
+    # print("Text: "+ article['text']+"\n"+"-"*80)
+    # print("Summary: " + article['gpt_summary'])
     db.update_article(article)
 
 def gpt_complete(messages):

@@ -31,17 +31,15 @@ def translate_article(url):
   if 'sentences_translated' in article:
     print("Already translated. Skipping…")
   else:
-    sentences = re.split(r'\.(?=\s)', article['text'])
-    full_text = article['title'] + "\n" + ".".join(sentences)
-    print(f"- {len(sentences)} Sentences in {url}")
-    raw = translate(full_text, article['language'])
-    title_translated, text_tranlated = raw.split("\n", 1)
-    article['title_translated'] = title_translated
-    article['sentences'] = re.split(r'\.(?=\s)', article['text'])
-    article['sentences_translated'] = re.split(r'\.(?=\s)', text_tranlated)
+    language = article['language']
+    text = article['summary']
+    translated = translate(text, language)
+    article['title_translated'] = translate(article['title'], language)
+    article['sentences'] = re.split(r'\.(?=\s)', text)
+    article['sentences_translated'] = re.split(r'\.(?=\s)', translated)
 
     db.update_article(article)
-    print(f"Translated {len(raw)} characters and saved article")
+    print(f"Translated {len(text + article['title'])} characters and saved article")
 
 if __name__ == "__main__":
   url = sys.argv[1]
