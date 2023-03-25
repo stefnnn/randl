@@ -1,20 +1,29 @@
 import React from "preact/compat";
 import useSWR from "swr";
 
-export const SelectLanguage: React.FC = () => {
-  const { data: languages, error, isLoading } = useSWR("/api/languages");
+type Language = {
+  code: string;
+  name: string;
+};
 
-  const onSelect = (language: string) => {
-    if (language) {
-      alert(language);
+const LANGUAGE_SELECT = { code: "", name: "Select a language" };
+
+export const SelectLanguage: React.FC = () => {
+  const { data, error, isLoading } = useSWR<{ languages: Language[] }>("languages");
+  const { languages } = data;
+  languages.unshift(LANGUAGE_SELECT);
+
+  const onSelect = (code: string) => {
+    if (code) {
+      alert(code);
     }
   };
 
   return (
     <form>
       <select onChange={(evt) => onSelect(evt.currentTarget.value)}>
-        {languages.map((lang) => (
-          <option>{lang}</option>
+        {languages?.map((lang) => (
+          <option value={lang.code}>{lang.name}</option>
         ))}
       </select>
     </form>

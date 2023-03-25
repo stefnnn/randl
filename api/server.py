@@ -9,9 +9,15 @@ app = Flask("RandL")
 CORS(app)
 PORT = 5000
 
-@app.post('/api/languages')
+@app.get('/api/languages')
 def languages():
-    return {"languages": ["de", "fr", "en"]}
+    languages = [
+        {"code": "de", "name": "German"},
+        {"code": "fr", "name": "French"},
+        {"code": "it", "name": "Italian"},
+        {"code": "es", "name": "Spanish"},
+    ]
+    return {"languages": languages}
 
 @app.get('/')
 def index():
