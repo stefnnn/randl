@@ -12,8 +12,12 @@ export const Sentences: React.FC<{ article: Article }> = ({ article }) => {
   );
 };
 
+function addDot(article, ix) {
+  return ix == article?.sentences?.length - 1 ? "" : ".";
+}
+
 export const SentenceComp: React.FC<{ article: Article; ix: number }> = ({ article, ix }) => {
-  const sentence = article?.sentences?.[ix];
+  const sentence = article?.sentences?.[ix] + addDot(article, ix);
   const translated = article?.sentences_translated?.[ix];
   const audioUrl = article?.audio ? `${Config.BASE}${article?.audio}${ix}` : undefined;
   const empty = sentence.match(/^\s+$/);
@@ -27,20 +31,23 @@ export const SentenceComp: React.FC<{ article: Article; ix: number }> = ({ artic
     }
   }
 
-  return empty ? (
-    <div className="my-2">Hello </div>
-  ) : (
-    <div className="group cursor-pointer relative hover:-mx-4 hover:px-4 py-2 hover:bg-slate-100" onClick={playAudio}>
+  function toggleTranslations(evt: any) {
+    evt.stopPropagation();
+    setShowTranslation((val) => (val + 1 > 2 ? 0 : val + 1));
+  }
+
+  return empty ? null : (
+    <div className="group cursor-pointer relative -mx-4 px-4 py-2 hover:bg-slate-100" onClick={playAudio}>
       <IconPlay className="text-transparent text-neutral-200 cursor-pointer absolute mb-1 z-10 top-4 -left-6 mr-1 w-4 h-4 group-hover:text-purple-400" />
       {sentence}
       <IconInfo
-        className="w-4 h-4 mb-1 mx-2 cursor-pointer inline rounded-full bg-neutral-100 hover:bg-orange-400"
-        onClick={() => setShowTranslation((val) => (val + 1 > 2 ? 0 : val + 1))}
+        className="absolute top-4 -right-10 w-4 h-4 mb-1 mx-2 cursor-pointer inline rounded-full text-neutral-700 bg-neutral-100 group-hover:bg-purple-200 hover:bg-orange-400"
+        onClick={toggleTranslations}
       />
       <div
         className={`${showTranslation % 2 == 1 ? "rotate-180" : ""} ${
           showTranslation == 0 ? "h-0 overflow-hidden" : ""
-        } text-neutral-400 transition-all duration-500  text-sm`}
+        } text-neutral-400 text-sm`}
       >
         {translated}
       </div>

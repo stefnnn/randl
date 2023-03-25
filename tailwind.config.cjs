@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}", "./index.html"],
-  safelist: ["bg-purple-600", "hover:bg-purple-600"],
+  safelist: ["bg-purple-600", "hover:bg-purple-600", "block"],
   theme: {
     extend: {
       colors: {
