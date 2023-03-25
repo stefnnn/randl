@@ -16,6 +16,13 @@ body {
   h3 {
     @apply text-3xl font-bold;
   }
+  input textarea,
+  select {
+    @apply block w-full px-4 py-3 border rounded appearance-none focus:bg-white border-neutral-400;
+  }
+  input::placeholder {
+    @apply text-neutral-500;
+  }
 }
 
 @layer components {

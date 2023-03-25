@@ -10,7 +10,7 @@ const LANGUAGE_SELECT = { code: "", name: "Select a language" };
 
 export const SelectLanguage: React.FC = () => {
   const { data, error, isLoading } = useSWR<{ languages: Language[] }>("languages");
-  const { languages } = data;
+  const languages = data?.languages || [];
   languages.unshift(LANGUAGE_SELECT);
 
   const onSelect = (code: string) => {
