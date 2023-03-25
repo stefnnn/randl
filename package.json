@@ -11,6 +11,7 @@
     "production": "yarn install && yarn preview && yarn server"
   },
   "dependencies": {
+    "jotai": "^2.0.3",
     "preact": "^10.13.0",
     "swr": "^2.1.1"
   },

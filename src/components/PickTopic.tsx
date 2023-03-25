@@ -1,23 +1,37 @@
 import React, { useMemo } from "preact/compat";
 import useSWR from "swr";
+import { useAtom } from "jotai";
+import { topicAtom } from "src/lib/atoms";
+import { Spinner } from "./Spinner";
 
-type Topic = string;
+export type Topic = string;
 
 export const PickTopic: React.FC = () => {
   const { data, error, isLoading } = useSWR<{ topics: Topic[] }>("topics");
   const topics = data?.topics || [];
   const sortedTopics = useMemo(() => topics.sort(), [topics]);
+  const [topic, setTopic] = useAtom(topicAtom);
+  const pillClasses = "pill cursor-pointer hover:animate-wiggle hover:shadow-lg bg-purple-300 hover:bg-purple-700";
 
-  const onClick = (topic: string) => {
-    if (topic) {
-      alert(topic);
-    }
+  const onClick = (t: string) => {
+    setTopic(t);
   };
 
-  return (
-    <div className="flex flex-wrap gap-3 justify-center mt-4 md:px-16">
-      {topics?.map((topic) => (
-        <div className="pill bg-purple-300 hover:bg-purple-700">{topic.toLocaleLowerCase()}</div>
+  if (error) console.error(error);
+
+  return isLoading ? (
+    <Spinner />
+  ) : (
+    <div className="flex flex-wrap gap-3 justify-center mt-8 md:px-16">
+      {sortedTopics?.map((t) => (
+        <div
+          className={`${pillClasses} ${
+            t == topic ? "bg-purple-600 hover:bg-purple-600 text-white border-transparent" : ""
+          }`}
+          onClick={() => onClick(t)}
+        >
+          {t.toLocaleLowerCase()}
+        </div>
       ))}
     </div>
   );

@@ -18,6 +18,12 @@ def languages():
 def topics():
     return {"topics": db.get_topics()}
 
+@app.get('/api/articles')
+def articles():
+    language = request.args.get('language')
+    topic = request.args.get('topic')
+    return {"articles": db.get_articles(language=language, topic=topic)}
+
 @app.get('/')
 def index():
     return '<b>Not much to see here...</b>'

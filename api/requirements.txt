@@ -1,3 +1,7 @@
 Flask==2.2.3
 flask-cors==3.0.10
 python-dotenv==1.0.0
+feedparser==6.0.10
+tinydb
+newspaper3k
+boto3

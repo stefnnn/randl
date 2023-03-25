@@ -14,6 +14,7 @@ module.exports = {
         dashing: "dashing 0.5s linear infinite",
         linedraw: "linedraw 1s linear forwards",
         grow: "grow 2s ease-in-out infinite",
+        wiggle: "wiggle 0.2s ease-in-out 1",
       },
       keyframes: {
         dashing: {
@@ -26,6 +27,10 @@ module.exports = {
         grow: {
           "0%": { r: 30, transformOrigin: "center", opacity: 1 },
           "100%": { r: 100, transformOrigin: "center", opacity: 0 },
+        },
+        wiggle: {
+          "0%, 100%": { transform: "rotate(-3deg)" },
+          "50%": { transform: "rotate(3deg)" },
         },
       },
       backgroundImage: {
