@@ -4,9 +4,8 @@ export const Layout: React.FC<{ children: any }> = ({ children }) => {
   return (
     <div className="md:p-8">
       <div className="mx-auto max-w-xl">
-        <header className="text-center m-4 text-primary">
-          <h1 className="">RandL</h1>
-          <h2>Read and Learn a Foreign Language</h2>
+        <header className="flex justify-center m-4 text-primary animate-wiggle">
+          <img src="/randl_logo.svg" width="100" />
         </header>
         <main className="bg-white md:rounded-xl md:shadow-xl min-h-[400px] p-4">{children}</main>
       </div>
