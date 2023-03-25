@@ -1,11 +1,14 @@
 import React from "preact/compat";
+import { Layout } from "./components/Layout";
+import { Main } from "./components/Main";
+import { ApiProvider } from "./lib/api";
 
 export function App() {
   return (
-    <div className="bg-slate-50 p-4">
-      <div className="mx-auto max-w-xl">
-        <h1 className="mt-8">Let's get started</h1>
-      </div>
-    </div>
+    <ApiProvider>
+      <Layout>
+        <Main />
+      </Layout>
+    </ApiProvider>
   );
 }
