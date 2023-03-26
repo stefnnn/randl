@@ -1,4 +1,4 @@
-import React from "preact/compat";
+import React, { useState } from "preact/compat";
 import { useAtomValue, useSetAtom } from "jotai";
 import { articleAtom, languageAtom, topicAtom } from "src/lib/atoms";
 import { Spinner } from "./Spinner";
@@ -31,6 +31,7 @@ export const ArticlePage: React.FC<{ article: Article }> = ({ article }) => {
         </a>
       </p>
       {article.questions && <QuestionsBox questions={article.questions} />}
+      <Export article={article} />
     </div>
   ) : (
     <Spinner />
@@ -39,4 +40,34 @@ export const ArticlePage: React.FC<{ article: Article }> = ({ article }) => {
 
 const WarnBox: React.FC<{ text: string; condition: boolean }> = ({ text, condition }) => {
   return condition ? <div className="box bg-orange-200 text-orange-700 my-2">{text}</div> : null;
+};
+
+const Export: React.FC<{ article: Article }> = ({ article }) => {
+  const [showExport, setShowExport] = useState(false);
+  return (
+    <div className="text-right">
+      {showExport && (
+        <div className="bg-slate-500 text-left mt-8 p-4 whitespace-pre-wrap text-xs font-mono rounded-lg text-white">
+          # {article.title}
+          <br />
+          <br />
+          {article.sentences?.map((s) => s.trimStart()).join("\n\n")}
+          <br />
+          <br />
+          {article.questions?.map((q) => (
+            <>
+              [.essay]
+              <br />
+              [!{q.question}?]
+              <br />
+              <br />
+            </>
+          ))}
+        </div>
+      )}
+      <button className="btn mt-8 bg-purple-600" onClick={() => setShowExport((val) => !val)}>
+        {showExport ? "Copy Code" : "Export Bitmark!"}
+      </button>
+    </div>
+  );
 };

@@ -7,7 +7,6 @@ import os
 
 load_dotenv()
 
-PORT = 6000
 app = Flask("RandL")
 CORS(app)
 
@@ -38,4 +37,4 @@ def index():
     return '<b>Not much to see here...</b>'
 
 if __name__ == '__main__':
-    app.run(port=6000)
+    app.run()
