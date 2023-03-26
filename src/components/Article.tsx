@@ -12,7 +12,7 @@ export const ArticlePage: React.FC<{ article: Article }> = ({ article }) => {
   const setArticle = useSetAtom(articleAtom);
 
   return article ? (
-    <div className="">
+    <div className="8">
       <a onClick={() => setArticle(false)} className="hover:underline text-sm cursor-pointer">
         &lt; Back
       </a>
@@ -23,7 +23,6 @@ export const ArticlePage: React.FC<{ article: Article }> = ({ article }) => {
 
       <h2 className="mt-8 mb-4">{article.title}</h2>
       {article.sentences ? <Sentences article={article} /> : <p className="whitespace-pre-wrap">{article.text}</p>}
-
       <p className="mt-4 text-sm text-neutral-400 text-right">
         Source:{" "}
         <a href={article.url} className="underline" target="_blank">

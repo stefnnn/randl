@@ -4,7 +4,7 @@ import Config from "src/lib/config";
 
 export const Sentences: React.FC<{ article: Article }> = ({ article }) => {
   return (
-    <div className="">
+    <div className="px-4 md:px-0">
       {article.sentences?.map((_, ix) => (
         <SentenceComp article={article} ix={ix} key={ix} />
       ))}
@@ -38,10 +38,10 @@ export const SentenceComp: React.FC<{ article: Article; ix: number }> = ({ artic
 
   return empty ? null : (
     <div className="group cursor-pointer relative -mx-4 px-4 py-2 hover:bg-slate-100" onClick={playAudio}>
-      <IconPlay className="text-transparent text-neutral-200 cursor-pointer absolute mb-1 z-10 top-4 -left-6 mr-1 w-4 h-4 group-hover:text-purple-400" />
+      <IconPlay className="text-transparent text-neutral-200 cursor-pointer absolute mb-1 z-10 top-4 -left-4 md:-left-6 mr-1 w-4 h-4 group-hover:text-purple-400" />
       {sentence}
       <IconInfo
-        className="absolute top-4 -right-10 w-4 h-4 mb-1 mx-2 cursor-pointer inline rounded-full text-neutral-700 bg-neutral-100 group-hover:bg-purple-200 hover:bg-orange-400"
+        className="absolute top-4 -right-4 md:-right-10 w-4 h-4 mb-1 mx-2 cursor-pointer inline rounded-full text-neutral-700 bg-neutral-100 group-hover:bg-purple-200 hover:bg-orange-400"
         onClick={toggleTranslations}
       />
       <div
