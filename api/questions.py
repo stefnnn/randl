@@ -40,7 +40,7 @@ def generate_questions(url):
       article['questions'] = json.loads(questions)
       db.update_article(article)
     except Exception as e:
-      print("Failed to generate questions: " + e)
+      print("Failed to generate questions: " + str(e))
 
 def gpt_complete(messages):
   api_response = openai.ChatCompletion.create(
