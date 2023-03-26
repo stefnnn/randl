@@ -53,7 +53,7 @@ if __name__ == "__main__":
   language = sys.argv[1]
   if language == "init":
     import nltk
-    nltk.download('punkt')
+    nltk.download('punkt') 
   else:
     topic = sys.argv[2]
     url = sys.argv[3]
