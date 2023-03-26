@@ -35,7 +35,7 @@ def translate_article(url):
     text = article['summary']
     translated = translate(text, language)
     article['title_translated'] = translate(article['title'], language)
-    article['sentences'] = re.split(r'\.(?=\.\s)', text)
+    article['sentences'] = re.split(r'\.(?=\s)', text)
     article['sentences_translated'] = re.split(r'\.(?=\s)', translated)
 
     db.update_article(article)
