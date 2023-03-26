@@ -4,7 +4,7 @@ from scrape import extract
 
 language = "de"
 topics = {
-    "billy eilish": ["https://www.20min.ch/story/billie-eilish-zeigt-erstmals-ihr-zuhause-481572927457", "https://www.blick.ch/people-tv/international/zehn-fakten-zu-billie-eilish-bieber-vogelspinne-und-tourette-syndrom-id17626842.html", "https://www.nau.ch/people/welt/billie-eilish-karriere-und-erfolge-der-us-sangerin-66361302"],
+    "billie eilish": ["https://www.20min.ch/story/billie-eilish-zeigt-erstmals-ihr-zuhause-481572927457", "https://www.blick.ch/people-tv/international/zehn-fakten-zu-billie-eilish-bieber-vogelspinne-und-tourette-syndrom-id17626842.html", "https://www.nau.ch/people/welt/billie-eilish-karriere-und-erfolge-der-us-sangerin-66361302"],
     "sustainability": ["https://www.srf.ch/bnf/rss/19920002"],
     "economy": ["https://www.srf.ch/news/bnf/rss/1926"],
     "crypto": ["https://www.20min.ch/story/jetzt-gibts-bitcoin-gutscheinkarten-in-schweizer-laeden-472773446523", "https://www.20min.ch/story/bitcoin-geht-durch-die-decke-starker-januar-fuer-kryptowaehrungen-351308378636", "https://www.srf.ch/news/wirtschaft/grosse-verluste-die-krypto-krise-trifft-auch-die-schweiz-aber-nicht-alle-gleich"],
