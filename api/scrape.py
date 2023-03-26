@@ -42,7 +42,10 @@ def extract_article(url, language, topic, source):
   except Exception as e:
     print(f"Could not parse {url}: " + e)
 
-def extract(url, language, topic, num = 10):
+def extract(url, language, topic, max):
+  global num
+  if max:
+    num = max
   if "rss" in url:
     extract_articles(url, language, topic)
   else:

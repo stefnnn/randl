@@ -14,4 +14,4 @@ topics = {
 
 for topic in topics:
   for url in topics[topic]:
-    extract(url, language=language, topic=topic, num=3)
+    extract(url, language=language, topic=topic, max=3)
