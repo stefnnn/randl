@@ -40,7 +40,7 @@ def extract_article(url, language, topic, source):
     num -= 1
     generate_metadata(article.url)
   except Exception as e:
-    print(f"Could not parse {url}: " + e)
+    print(f"Could not parse {url}: " + str(e))
 
 def extract(url, language, topic, max):
   global num
