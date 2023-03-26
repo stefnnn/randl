@@ -9,7 +9,7 @@ load_dotenv()
 
 app = Flask("RandL")
 CORS(app)
-PORT = 5000
+PORT = 6000
 
 @app.get('/api/languages')
 def languages():
