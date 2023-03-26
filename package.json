@@ -10,7 +10,8 @@
     "server": "python -m flask --app api/server.py run --debug",
     "production": "yarn install && yarn preview && yarn server",
     "generate": "api/generate.py",
-    "scrape": "api/scrape.py"
+    "scrape": "api/scrape.py",
+    "delete": "api/delete.py"
   },
   "dependencies": {
     "jotai": "^2.0.3",
