@@ -13,7 +13,7 @@ polly = boto3.client('polly')
 AUDIO_DIR = "data/audio"
 TARGET_LANG = "en"
 TARGET_SPEACH_LANG = {"de": "de-DE", "en": "en-US", "fr": "fr-FR", "es": "es-ES", "it":"it-IT"}
-POLLY_VOICES = {"en": "Joanna", "de": "Vicki", "fr": "Mathieu", "it":"Bianca", "es": "Sergio"}
+POLLY_VOICES = {"en": "Joanna", "de": "Vicki", "fr": "Lea", "it":"Bianca", "es": "Sergio"}
 
 def generate_audio(url):
   article = db.find_article(url)
